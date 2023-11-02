@@ -131,7 +131,8 @@ data "aws_network_interfaces" "task" {
 }
 
 data "aws_network_interface" "task" {
-  id = join(",", data.aws_network_interfaces.task.ids)
+  count = var.running == true ? 1 : 0
+  id    = join(",", data.aws_network_interfaces.task.ids)
 }
 
 data "aws_route53_zone" "task" {

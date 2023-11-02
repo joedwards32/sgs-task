@@ -3,7 +3,7 @@ output "ecs_service_id" {
 }
 
 output "privateipv4" {
-  value = data.aws_network_interface.task.private_ip
+  value = coalesce(data.aws_network_interface.task[*].private_ip)
 }
 
 output "publicipv4" {
