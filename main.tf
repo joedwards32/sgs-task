@@ -109,6 +109,7 @@ resource "aws_ecs_service" "task" {
   cluster         = var.sgs_cluster.id
   task_definition = aws_ecs_task_definition.task.arn
   desired_count   = var.running  == true ? 1 : 0
+  enable_execute_command = true
   wait_for_steady_state = true
   network_configuration {
     subnets = [var.sgs_cluster.subnet_id]
